@@ -1,0 +1,89 @@
+.rest {
+    padding: 100px 0;
+}
+
+.rest .restList {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 50px 0;
+    gap: 10px;
+}
+
+
+.rest .restList .details {
+
+    text-align: center;
+}
+
+.rest .restList .details h3 {
+    color: var(--main-color);
+    margin-top: 20px;
+}
+
+
+
+.rest .restList .restCard {
+    cursor: pointer;
+    width: 430px;
+    transition: .3s;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-items: center;
+}
+
+@media screen and (max-width:991px) {
+    .rest .restList .restCard {
+        width: calc(540px / 2);
+    }
+
+    .rest .restList .restCard img {
+        width: calc(540px / 2);
+    }
+
+    .rest .restList .left,
+    .rest .restList .right {
+        padding: 0;
+    }
+}
+
+@media screen and (max-width:500px) {
+    .rest .restList .restCard {
+        width: calc(350px / 2);
+    }
+
+    .rest .restList .restCard img {
+        width: calc(350px / 2);
+        height: 200px;
+    }
+
+    .rest .restList {
+        justify-content: center;
+    }
+
+    .rest .restList .left,
+    .rest .restList .right {
+        padding: 0;
+    }
+}
+
+.rest .restList .left .restCard:hover {
+    transform: translateX(-3px);
+}
+
+.rest .restList .right .restCard:hover {
+    transform: translateX(3px);
+}
+
+.rest .restList img {
+    width: 350px;
+    height: 430px;
+    border: 1px solid #000;
+    box-shadow: 0 0 3px 2px #000;
+    transition: .3s;
+}
+
+.rest .restList img:hover {
+    box-shadow: 0 0 10px 2px #000;
+}
