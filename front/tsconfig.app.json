@@ -40,10 +40,10 @@
       "@store": [
         "src/store/index"
       ],
-      "@types/*": [
+      "@customtypes/*": [
         "src/types/*"
       ],
-      "@types": [
+      "@customtypes": [
         "src/types/index"
       ],
       "@styles/*": [

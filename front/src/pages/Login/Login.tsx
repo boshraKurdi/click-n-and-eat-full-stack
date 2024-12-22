@@ -5,14 +5,33 @@ import './Login.css'
 import { Button } from '@components/index'
 import { z } from 'zod';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { NavLink } from 'react-router-dom'
+import { NavLink, useNavigate } from 'react-router-dom'
+import { useState } from 'react'
+import { useAppDispatch } from '@store/hook'
+import { actAuthLogin } from '@store/auth/authSlice'
 const schema = z.object({
-    email: z.string().email(),
-    password: z.string().min(8),
+    email: z.string({ required_error: 'required field', invalid_type_error: 'email is required!' }).email(),
+    password: z.string({ required_error: 'required field', invalid_type_error: 'password is required!' }).min(8),
+
 });
 
 type Inputs = z.infer<typeof schema>;
+type TUser = {
+    user: {
+        email: string,
+        password: string
+    }
+}
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const data: TUser = {
+        user: {
+            email: email,
+            password: password
+        }
+    }
+    const dispatch = useAppDispatch();
     const {
         register,
         handleSubmit,
@@ -21,11 +40,18 @@ const Login = () => {
     } = useForm<Inputs>({
         resolver: zodResolver(schema),
     });
-    const onSubmit: SubmitHandler<Inputs> = async (data) => {
+    const navigate = useNavigate();
+
+    const onSubmit: SubmitHandler<Inputs> = async () => {
         try {
             await new Promise((resolve) => setTimeout(resolve, 1000))
-            throw new Error();
-            console.log(data)
+            // throw new Error();
+            // console.log(data)
+            dispatch(actAuthLogin(data))
+                .unwrap()
+                .then(() => navigate('/home'))
+            setEmail('')
+            setPassword('')
 
         } catch (error) {
             setError("email", {
