@@ -4,24 +4,13 @@ import actAuthLogin from "./act/actAuthLogin";
 import { isString } from "@customtypes/guard";
 import { TLoading } from "@customtypes/loading";
 interface IAuthState {
-  user: {
-    name: string;
-    email: string;
-    password: string;
-  } | null,
-  authorisation: {
-    token: string | null
-
-  }
+  data: object
   loading: TLoading;
   error: string | null;
 }
 
 const initialState: IAuthState = {
-  user: null,
-  authorisation: {
-    token: null
-  },
+  data: {},
   loading: "idle",
   error: null,
 };
@@ -35,8 +24,7 @@ const authSlice = createSlice({
       state.error = null;
     },
     authLogout: (state) => {
-      state.user = null;
-      state.authorisation.token = null;
+      state.data = {};
     },
   },
   extraReducers: (builder) => {
@@ -62,8 +50,7 @@ const authSlice = createSlice({
     });
     builder.addCase(actAuthLogin.fulfilled, (state, action) => {
       state.loading = "succeeded";
-      state.authorisation.token = action.payload.authorisation.token;
-      state.user = action.payload.user;
+      state.data = action.payload;
     });
     builder.addCase(actAuthLogin.rejected, (state, action) => {
       state.loading = "failed";
