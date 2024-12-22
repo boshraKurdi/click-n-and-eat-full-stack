@@ -1,11 +1,10 @@
 export type TCategory = {
-    id: number;
-    title: string;
-    price: number;
-    img: string;
-    max?: number;
-    cat_prefix?: string;
-    quantity?: number;
-    isLiked?: boolean;
-    isAuthenticated?: boolean;
-};
+    id?: number;
+    name: string;
+    media: [{
+        original_url: String,
+        file_name: String,
+
+    }]
+}
+    ;

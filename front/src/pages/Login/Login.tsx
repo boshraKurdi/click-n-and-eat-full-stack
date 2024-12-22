@@ -17,19 +17,15 @@ const schema = z.object({
 
 type Inputs = z.infer<typeof schema>;
 type TUser = {
-    user: {
-        email: string,
-        password: string
-    }
+    email: string,
+    password: string
 }
 const Login = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const data: TUser = {
-        user: {
-            email: email,
-            password: password
-        }
+        email: email,
+        password: password
     }
     const dispatch = useAppDispatch();
     const {

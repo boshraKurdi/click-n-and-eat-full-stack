@@ -3,24 +3,11 @@ import axios from "axios";
 import axiosErrorHandler from "@utils/axiosErrorHandler";
 
 type TFormData = {
-  user: {
-    email: string;
-    password: string;
-  },
+  email: string;
+  password: string;
 };
 
-type TResponse = {
-  user: {
-    id: Number,
-    name: string;
-    email: string;
-    password: string;
-  },
-  authorisation: {
-    token: string
-
-  }
-};
+type TResponse = object;
 
 const actAuthLogin = createAsyncThunk(
   "auth/actAuthLogin",
@@ -31,7 +18,6 @@ const actAuthLogin = createAsyncThunk(
       // const res = await axios.post<TResponse>("auth/login", formData);
       const res = await axios.post<TResponse>("auth/login", JSON.stringify(formData), {
         headers: { 'Content-Type': 'application/json' },
-        withCredentials: true
       });
       return res.data;
     } catch (error) {

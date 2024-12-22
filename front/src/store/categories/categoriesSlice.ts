@@ -5,13 +5,13 @@ import { TLoading } from '@customtypes/loading'
 import { TCategory } from '@customtypes/category'
 import { isString } from "@customtypes/guard";
 interface ICategoriesState {
-  records: TCategory[];
+  data: TCategory[];
   loading: TLoading;
   error: string | null;
 }
 
 const initialState: ICategoriesState = {
-  records: [],
+  data: [],
   loading: "idle",
   error: null,
 };
@@ -21,7 +21,7 @@ const categoriesSlice = createSlice({
   initialState,
   reducers: {
     categoriesRecordsCleanUp: (state) => {
-      state.records = [];
+      state.data = [];
     },
   },
   extraReducers: (builder) => {
@@ -31,7 +31,7 @@ const categoriesSlice = createSlice({
     });
     builder.addCase(actGetCategories.fulfilled, (state, action) => {
       state.loading = "succeeded";
-      state.records = action.payload;
+      state.data = action.payload;
     });
     builder.addCase(actGetCategories.rejected, (state, action) => {
       state.loading = "failed";
