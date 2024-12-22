@@ -13,9 +13,9 @@ class CategorySeeder extends Seeder
      */
     public function run(): void
     {
-        $name = ['Meat', 'Pizza', 'Drink', 'Coffee', 'Healthy'];
-        $name_ar = ['لحمة', 'بيتزا', 'مشروبات', 'قهوة', 'غذاء صحي'];
-        for ($i = 0; $i <= 4; $i++) {
+        $name = ['salad', 'Pizza', 'nuggets', 'noodles', 'Ice Cream', 'Hot Dog', 'donut', 'burger', 'drink'];
+        $name_ar = ['سلطة', 'بيتزا', 'ناغيت', 'معكرونة', 'بوظة', 'صندويشات', 'دونات', 'برغر', 'مشروبات'];
+        for ($i = 0; $i <= 8; $i++) {
             Category::create([
                 'name' => $name[$i],
                 'name_ar' => $name_ar[$i]
