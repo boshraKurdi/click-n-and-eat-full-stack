@@ -45,7 +45,7 @@ const Login = () => {
             // console.log(data)
             dispatch(actAuthLogin(data))
                 .unwrap()
-                .then(() => navigate('/home'))
+                .then(() => navigate('/'))
             setEmail('')
             setPassword('')
 
