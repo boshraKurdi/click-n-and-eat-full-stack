@@ -37,7 +37,7 @@ const dataCate = [{
 },]
 const CategoryList = () => {
     const dispatch = useDispatch();
-    const { data } = useAppSelector(state => state.categories)
+    const { data, error, loading } = useAppSelector(state => state.categories)
     useEffect(() => {
         var promise = dispatch<any>(actGetCategories())
         return () => {
@@ -45,7 +45,7 @@ const CategoryList = () => {
             dispatch(categoriesRecordsCleanUp());
         };
     }, [dispatch]);
-    const CategoriesCard = data.map((cate) => <CategoryCard {...cate} />)
+    const CategoriesCard = data?.data.map((cate) => <CategoryCard name={cate.name} media={cate.media} />)
     return (
 
         <Row className="menuList">

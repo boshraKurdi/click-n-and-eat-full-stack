@@ -29,7 +29,7 @@ const CategoryCard = ({ name, media }: TCategory) => {
     }
     return (
         <Col onClick={clickHandler} lg={3} md={4} sm={4} className="menuCard">
-            <img src={`${media[0].file_name}`} alt="" />
+            <img src={`${media[0]?.original_url}`} alt="" />
             <p>{name}</p>
         </Col>)
 }
