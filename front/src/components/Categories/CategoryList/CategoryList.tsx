@@ -8,7 +8,11 @@ import Salad from '@assets/imgs/salad.jpeg'
 import hotDog from '@assets/imgs/hotDog.webp'
 import Ice from '@assets/imgs/iceCream.webp'
 import CategoryCard from '../CategoryCard/CategoryCard'
-const data = [{
+import { useEffect } from 'react'
+import { actGetCategories, categoriesRecordsCleanUp } from '@store/categories/categoriesSlice'
+import { useDispatch } from 'react-redux'
+import { useAppSelector } from '@store/hook'
+const dataCate = [{
     img: Burger,
     name: 'Burger'
 },
@@ -32,8 +36,16 @@ const data = [{
     name: 'Ice Cream'
 },]
 const CategoryList = () => {
-
-    const CategoriesCard = data.map((cate) => <CategoryCard text={cate.name} img={cate.img} />)
+    const dispatch = useDispatch();
+    const { data, error, loading } = useAppSelector(state => state.categories)
+    useEffect(() => {
+        var promise = dispatch<any>(actGetCategories())
+        return () => {
+            promise.abort();
+            dispatch(categoriesRecordsCleanUp());
+        };
+    }, [dispatch]);
+    const CategoriesCard = data?.data.map((cate) => <CategoryCard name={cate.name} media={cate.media} />)
     return (
 
         <Row className="menuList">

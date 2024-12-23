@@ -16,22 +16,20 @@ const schema = z.object({
 
 type Inputs = z.infer<typeof schema>;
 type TUser = {
-    user: {
-        name: string,
-        email: string,
-        password: string
-    }
+    name: string,
+    email: string,
+    password: string
+
 }
 const Registeration = () => {
     const [Name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const data: TUser = {
-        user: {
-            name: Name,
-            email: email,
-            password: password
-        }
+        name: Name,
+        email: email,
+        password: password
+
     }
     const dispatch = useAppDispatch();
     const {
@@ -51,7 +49,7 @@ const Registeration = () => {
             // console.log(data)
             dispatch(actAuthRegister(data))
                 .unwrap()
-                .then(() => navigate('/home'))
+                .then(() => navigate('/'))
             setEmail('')
             setName('')
             setPassword('')
