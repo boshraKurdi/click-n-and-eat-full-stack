@@ -3,6 +3,7 @@
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CategoryController;
 use App\Http\Controllers\MealController;
+use App\Http\Controllers\RestaurantCategoryController;
 use App\Http\Controllers\RestaurantController;
 use Illuminate\Support\Facades\Route;
 
@@ -17,12 +18,9 @@ Route::group(['prefix' => 'auth'], function () {
 
 Route::group(['prefix' => 'restaurant'], function () {
     Route::get('index', [RestaurantController::class, 'index']);
-});
-Route::group(['prefix' => 'category'], function () {
-    Route::get('index', [CategoryController::class, 'index']);
+    Route::get('show/{restaurant}', [RestaurantController::class, 'show']);
 });
 
 Route::group(['prefix' => 'meal'], function () {
-    Route::get('index/{id}', [MealController::class, 'index']);
-    Route::get('show/{meal}', [MealController::class, 'show']);
+    Route::get('show/{restaurantCategory}', [RestaurantCategoryController::class, 'show']);
 });

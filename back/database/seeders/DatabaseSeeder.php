@@ -21,8 +21,9 @@ class DatabaseSeeder extends Seeder
             CategorySeeder::class,
             MealSeeder::class,
             RestaurantSeeder::class,
-            RestaurantMealSeeder::class,
-            MideaSeeder::class
+            MideaSeeder::class,
+            RestaurantCategorySeeder::class,
+            RestaurantCategoryMealSeeder::class
         ]);
     }
 }

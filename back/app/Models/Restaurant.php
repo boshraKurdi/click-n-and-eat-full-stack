@@ -21,6 +21,15 @@ class Restaurant extends Model implements HasMedia
             'meal_id'
         )->withPivot(['price', 'restaurant_id']);
     }
+    public function category()
+    {
+        return $this->belongsToMany(
+            Category::class,
+            'restaurant_categories',
+            'restaurant_id',
+            'category_id'
+        )->withPivot('id');
+    }
 
     public function registerMediaCollections(): void
     {

@@ -17,6 +17,7 @@ class RestaurantController extends Controller
         return response()->json(['data' => $data]);
     }
 
+
     /**
      * Store a newly created resource in storage.
      */
@@ -30,7 +31,8 @@ class RestaurantController extends Controller
      */
     public function show(Restaurant $restaurant)
     {
-        //
+        $data = $restaurant->load(['media', 'category']);
+        return response()->json($data);
     }
 
     /**

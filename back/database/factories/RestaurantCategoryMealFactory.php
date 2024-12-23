@@ -3,13 +3,13 @@
 namespace Database\Factories;
 
 use App\Models\Meal;
-use App\Models\Restaurant;
+use App\Models\RestaurantCategory;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\RestaurantMeal>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\RestaurantCategoryMeal>
  */
-class RestaurantMealFactory extends Factory
+class RestaurantCategoryMealFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,8 +19,8 @@ class RestaurantMealFactory extends Factory
     public function definition(): array
     {
         return [
-            'restaurant_id' => Restaurant::inRandomOrder()->first()->id,
-            'meal_id' => Meal::inRandomOrder()->first()->id,
+            'restaurant_category_id' => RestaurantCategory::inRandomOrder()->first()->id,
+            'meal_id' =>  Meal::inRandomOrder()->first()->id,
             'price' => rand(100, 5000)
         ];
     }

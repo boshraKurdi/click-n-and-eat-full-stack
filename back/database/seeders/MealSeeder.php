@@ -75,14 +75,12 @@ class MealSeeder extends Seeder
             'طبق المناعة يعزز صحة الجسم من خلال توفير العناصر الغذائية الأساسية التي تقوي الجهاز المناعي، مثل الفيتامينات والمعادن ومضادات الأكسدة. يساعد تناول هذا الطبق بانتظام في تقليل خطر الإصابة بالأمراض وتعزيز القدرة على مواجهة العدوى.',
         ];
 
-        $category_id = [3, 2, 1, 1, 4, 5, 1, 1, 4, 1, 4, 4, 4];
         for ($i = 0; $i <= 12; $i++) {
             Meal::create([
                 'name' => $title[$i],
                 'name_ar' => $title_ar[$i],
                 'description' => $description[$i],
                 'description_ar' => $description_ar[$i],
-                'category_id' => $category_id[$i]
             ]);
         }
     }

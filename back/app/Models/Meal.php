@@ -12,13 +12,13 @@ class Meal extends Model implements HasMedia
     /** @use HasFactory<\Database\Factories\MealFactory> */
     use HasFactory, InteractsWithMedia;
 
-    public function restaurant()
+    public function restaurantCayegory()
     {
         return $this->belongsToMany(
-            Restaurant::class,
-            'restaurant_meals',
+            RestaurantCategory::class,
+            'restaurant_category_meals',
             'meal_id',
-            'restaurant_id',
+            'restaurant_category_id'
         )->withPivot(['price']);
     }
 

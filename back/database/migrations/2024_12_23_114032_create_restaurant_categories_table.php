@@ -1,6 +1,7 @@
 <?php
 
 use App\Models\Category;
+use App\Models\Restaurant;
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -12,12 +13,10 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('meals', function (Blueprint $table) {
+        Schema::create('restaurant_categories', function (Blueprint $table) {
             $table->id();
-            $table->string('name');
-            $table->string('name_ar');
-            $table->text('description');
-            $table->text('description_ar');
+            $table->foreignIdFor(Restaurant::class)->constrained();;
+            $table->foreignIdFor(Category::class)->constrained();;
             $table->timestamps();
         });
     }
@@ -27,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('meals');
+        Schema::dropIfExists('restaurant_categories');
     }
 };
