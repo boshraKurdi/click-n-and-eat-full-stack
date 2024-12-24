@@ -19,7 +19,7 @@ const Header = () => {
                     <Nav className="me-auto links">
                         <NavLink to="/">Home</NavLink>
                         <NavLink to="food">Food</NavLink>
-                        <NavLink to="restaurants">Restaurants</NavLink>
+                        <NavLink to="restaurant">Restaurants</NavLink>
                         <NavLink to="login"><Button>Login</Button></NavLink>
                     </Nav>
                 </Navbar.Collapse>

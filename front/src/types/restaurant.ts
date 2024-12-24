@@ -1,11 +1,12 @@
-export type TCategory = {
+export type TRestaurant = {
     id?: number,
     name: string,
+    address: string,
     media: [{
         original_url: string
     }]
 }
-export type TCategoryProperty = {
+export type TRestaurantProperty = {
     data: [{
         id?: number,
         name: string,
@@ -37,20 +38,6 @@ export type TCategoryProperty = {
             original_url: string,
             preview_url: string
         }],
-        category: [
-            {
-                id: Number,
-                name: string,
-                name_ar: string,
-                created_at: string,
-                updated_at: string,
-                pivot: {
-                    restaurant_id: number,
-                    category_id: number,
-                    id: number
-                }
-            }
-        ]
     }]
 
 } | null;

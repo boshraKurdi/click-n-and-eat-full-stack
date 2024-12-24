@@ -5,12 +5,12 @@ import { TCategoryProperty } from "@customtypes/category";
 
 type TResponse = TCategoryProperty;
 
-const actGetCategories = createAsyncThunk(
-  "categories/actGetCategories",
-  async (_, thunkAPI) => {
+const actGetResrtaurants = createAsyncThunk(
+  "restaurants/actGetResrtaurants",
+  async (id: string, thunkAPI) => {
     const { rejectWithValue, signal } = thunkAPI;
     try {
-      const response = await axios.get<TResponse>("category/index", { signal });
+      const response = await axios.get<TResponse>(`restaurant/show/${id}`, { signal });
       console.log(response.data)
       return response.data;
     } catch (error) {
@@ -19,4 +19,4 @@ const actGetCategories = createAsyncThunk(
   }
 );
 
-export default actGetCategories;
+export default actGetResrtaurants;

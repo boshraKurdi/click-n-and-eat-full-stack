@@ -14,6 +14,7 @@ import categories from "./categories/categoriesSlice";
 import products from "./products/productsSlice";
 import cart from "./cart/CartSlice";
 import auth from "./auth/authSlice";
+import restaurants from './restaurants/restaurantsSlice';
 import orders from "./orders/ordersSlice";
 
 const rootPersistConfig = {
@@ -38,6 +39,7 @@ const rootReducer = combineReducers({
     auth: persistReducer(authPersistConfig, auth),
     categories,
     products,
+    restaurants,
     cart: persistReducer(cartPersistConfig, cart),
     orders,
 });

@@ -1,5 +1,5 @@
 import { createSlice } from "@reduxjs/toolkit";
-import actGetCategories from "./act/actGetCategories";
+import actGetCategoriesByRest from "./act/actGetCategoriesByRest";
 
 import { TLoading } from '@customtypes/loading'
 import { TCategoryProperty } from '@customtypes/category'
@@ -25,15 +25,15 @@ const categoriesSlice = createSlice({
     },
   },
   extraReducers: (builder) => {
-    builder.addCase(actGetCategories.pending, (state) => {
+    builder.addCase(actGetCategoriesByRest.pending, (state) => {
       state.loading = "pending";
       state.error = null;
     });
-    builder.addCase(actGetCategories.fulfilled, (state, action) => {
+    builder.addCase(actGetCategoriesByRest.fulfilled, (state, action) => {
       state.loading = "succeeded";
       state.data = action.payload;
     });
-    builder.addCase(actGetCategories.rejected, (state, action) => {
+    builder.addCase(actGetCategoriesByRest.rejected, (state, action) => {
       state.loading = "failed";
       if (isString(action.payload)) {
         state.error = action.payload;
@@ -42,6 +42,6 @@ const categoriesSlice = createSlice({
   },
 });
 
-export { actGetCategories };
+export { actGetCategoriesByRest };
 export const { categoriesRecordsCleanUp } = categoriesSlice.actions;
 export default categoriesSlice.reducer;

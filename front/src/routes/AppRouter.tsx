@@ -18,9 +18,6 @@ function AppRouter() {
         index: true,
         element: <Home />
       }, {
-        path: 'food',
-        element: <SuspensedPage><Food /></SuspensedPage>
-      }, {
         path: 'login',
         element: <SuspensedPage><Login /></SuspensedPage>
       }, {
@@ -31,7 +28,11 @@ function AppRouter() {
         element: <SuspensedPage><Checkout /></SuspensedPage>
       }, {
         path: 'restaurant',
-        element: <SuspensedPage><Restaurant /></SuspensedPage>
+        element: <SuspensedPage><Restaurant /></SuspensedPage>,
+        children: [{
+          path: '/:id:',
+          element: <SuspensedPage><Food /></SuspensedPage>
+        }],
       }]
     }
   ])

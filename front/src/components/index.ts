@@ -8,4 +8,6 @@ import LottieHandler from "./feedBack/LottieHandler/LottieHandler";
 import SuspensedPage from "./feedBack/SuspensedPage/SuspensedPage"
 import Button from "./feedBack/Button/Button";
 import MainTitle from "./feedBack/MainTitle/MainTitle";
-export { Header, Footer, ProductCard, ProductList, Cart, Landing, LottieHandler, SuspensedPage, Button, MainTitle }
+import RestaurantCard from "./Restaurants/RestaurantCard/RestaurantCard";
+import RestaurantsList from "./Restaurants/RestaurantsList/RestaurantsList";
+export { Header, Footer, ProductCard, ProductList, Cart, Landing, LottieHandler, RestaurantCard, RestaurantsList, SuspensedPage, Button, MainTitle }
