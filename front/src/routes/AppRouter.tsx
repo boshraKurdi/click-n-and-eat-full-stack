@@ -30,7 +30,7 @@ function AppRouter() {
         path: 'restaurant',
         element: <SuspensedPage><Restaurant /></SuspensedPage>,
         children: [{
-          path: '/:id:',
+          path: '/:id',
           element: <SuspensedPage><Food /></SuspensedPage>
         }],
       }]
