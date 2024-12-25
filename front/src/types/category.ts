@@ -1,12 +1,12 @@
 export type TCategory = {
     id?: number,
     name: string,
-    media: [{
-        original_url: string
-    }]
+    // media: [{
+    //     original_url: string
+    // }]
 }
-export type TCategoryProperty = {
-    data: [{
+export type TCategoryProperty =
+    {
         id?: number,
         name: string,
         name_ar?: string,
@@ -51,7 +51,7 @@ export type TCategoryProperty = {
                 }
             }
         ]
-    }]
 
-} | null;
+
+    } | null;
 ;

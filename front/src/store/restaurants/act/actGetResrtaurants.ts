@@ -11,7 +11,6 @@ const actGetResrtaurants = createAsyncThunk(
         const { rejectWithValue, signal } = thunkAPI;
         try {
             const response = await axios.get<TResponse>("restaurant/index", { signal });
-            console.log(response.data)
             return response.data;
         } catch (error) {
             return rejectWithValue(axiosErrorHandler(error));

@@ -40,8 +40,7 @@ const CategoryList = () => {
     const { id } = useParams();
     const dispatch = useDispatch();
     const { data, error, loading } = useAppSelector(state => state.categories);
-    const restaurantRecord = data?.data.find(dat => dat.id === id);
-    const categoryData = restaurantRecord?.category;
+    const categoryData = data?.category;
 
     useEffect(() => {
         var promise = dispatch<any>(actGetCategoriesByRest(id as string))
@@ -50,7 +49,9 @@ const CategoryList = () => {
             dispatch(categoriesRecordsCleanUp());
         };
     }, [dispatch]);
-    const CategoriesCard = categoryData?.map((cate) => <CategoryCard name={cate.name} media={cate.media} />)
+    const CategoriesCard = categoryData?.map((cate) => <CategoryCard name={cate.name}
+    // media={cate.media}
+    />)
     return (
 
         <Row className="menuList">
