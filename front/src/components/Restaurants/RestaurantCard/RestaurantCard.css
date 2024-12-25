@@ -24,6 +24,11 @@
     margin-top: 20px;
 }
 
+.details p {
+    color: #fff;
+    margin-top: 20px;
+}
+
 .restCard {
     overflow: hidden;
     cursor: pointer;
@@ -55,7 +60,7 @@
 
 @media screen and (max-width:991px) {
     .restCard {
-        width: 430px;
+        width: 300px;
     }
 
 

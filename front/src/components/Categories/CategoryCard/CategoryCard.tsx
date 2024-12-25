@@ -2,7 +2,7 @@ import { Col } from 'react-bootstrap'
 import './CategoryCard.css'
 import { TCategory } from '@customtypes/category'
 
-const CategoryCard = ({ name, media }: TCategory) => {
+const CategoryCard = ({ name }: TCategory) => {
     const clickHandler = () => {
         const menuCard = document.querySelectorAll('.menuCard');
         const menuCardImg = document.querySelectorAll('.menuCard img');
@@ -29,7 +29,7 @@ const CategoryCard = ({ name, media }: TCategory) => {
     }
     return (
         <Col onClick={clickHandler} lg={3} md={4} sm={4} className="menuCard">
-            <img src={`${media[0]?.original_url}`} alt="" />
+            {/* <img src={`${media[0]?.original_url}`} alt="" /> */}
             <p>{name}</p>
         </Col>)
 }
