@@ -23,4 +23,5 @@ Route::group(['prefix' => 'restaurant'], function () {
 
 Route::group(['prefix' => 'meal'], function () {
     Route::get('show/{restaurantCategory}', [RestaurantCategoryController::class, 'show']);
+    Route::get('details/{meal}', [MealController::class, 'show']);
 });

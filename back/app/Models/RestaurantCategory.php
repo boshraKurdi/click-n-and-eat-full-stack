@@ -19,4 +19,11 @@ class RestaurantCategory extends Model
             'meal_id'
         )->withPivot(['price']);
     }
+    public function category()
+    {
+        return $this->belongsTo(
+            Category::class,
+
+        );
+    }
 }

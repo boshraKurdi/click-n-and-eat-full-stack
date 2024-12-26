@@ -29,18 +29,10 @@ function AppRouter() {
       }, {
         path: 'restaurant',
         element: <SuspensedPage><Restaurant /></SuspensedPage>,
-<<<<<<< HEAD
-        children: [{
-          path: '/:id',
-          element: <SuspensedPage><Food /></SuspensedPage>
-        }],
-=======
-
       },
       {
         path: 'restaurant/:id',
         element: <SuspensedPage><Food /></SuspensedPage>
->>>>>>> bbbc082ee3c7c00f9c1f5d79e546b0f08e297127
       }]
     }
   ])
