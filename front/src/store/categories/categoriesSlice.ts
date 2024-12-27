@@ -7,11 +7,13 @@ import { isString } from "@customtypes/guard";
 interface ICategoriesState {
   data: TCategoryProperty;
   loading: TLoading;
+  id: number | null
   error: string | null;
 }
 
 const initialState: ICategoriesState = {
   data: null,
+  id: null,
   loading: "idle",
   error: null,
 };
@@ -23,6 +25,7 @@ const categoriesSlice = createSlice({
     categoriesRecordsCleanUp: (state) => {
       state.data = null;
     },
+
   },
   extraReducers: (builder) => {
     builder.addCase(actGetCategoriesByRest.pending, (state) => {

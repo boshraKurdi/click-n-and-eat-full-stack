@@ -1,12 +1,13 @@
 import './Button.css'
 type TButton = {
     children: React.ReactNode | string,
+    onClick?: () => void
     disabled?: boolean,
     type?: 'button' | 'submit' | 'reset'
 }
-const Button = ({ children, disabled, type }: TButton) => {
+const Button = ({ children, disabled, type, onClick }: TButton) => {
     return (
-        <button disabled={disabled} type={type} className='button'>
+        <button onClick={onClick} disabled={disabled} type={type} className='button'>
             {children}
         </button>
     )

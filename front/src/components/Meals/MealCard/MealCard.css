@@ -16,6 +16,11 @@
     color: var(--main-color);
 }
 
+.productList .card-body {
+    bottom: 0;
+    position: absolute;
+}
+
 .productList .card button {
     width: 100%;
 }

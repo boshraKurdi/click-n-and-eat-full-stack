@@ -6,7 +6,7 @@ const Home = lazy(() => import("@pages/Home/Home"));
 const Food = lazy(() => import("@pages/Food/Food"));
 const Checkout = lazy(() => import("@pages/Checkout/Checkout"));
 const Login = lazy(() => import("@pages/Login/Login"));
-// const Menu = lazy(() => import("@pages/Menu/Menu"));
+const Menu = lazy(() => import("@pages/Menu/Menu"));
 const Restaurant = lazy(() => import("@pages/Restuarant/Restaurant"));
 const Registeration = lazy(() => import("@pages/Registeration/Registeration"));
 function AppRouter() {
@@ -29,11 +29,17 @@ function AppRouter() {
       }, {
         path: 'restaurant',
         element: <SuspensedPage><Restaurant /></SuspensedPage>,
+
       },
       {
         path: 'restaurant/:id',
+        element: <SuspensedPage><Menu /></SuspensedPage>,
+
+      }, {
+        path: 'restaurant/:id/categories/:mealsId',
         element: <SuspensedPage><Food /></SuspensedPage>
-      }]
+      }
+      ]
     }
   ])
   return (

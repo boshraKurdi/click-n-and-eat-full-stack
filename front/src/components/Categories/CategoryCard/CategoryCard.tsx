@@ -1,9 +1,12 @@
 import { Col } from 'react-bootstrap'
 import './CategoryCard.css'
 import { TCategory } from '@customtypes/category'
+import { useNavigate } from 'react-router-dom'
 
-const CategoryCard = ({ name }: TCategory) => {
+const CategoryCard = ({ name, id }: TCategory) => {
+    const navigate = useNavigate();
     const clickHandler = () => {
+        navigate(`categories/${id}`);
         const menuCard = document.querySelectorAll('.menuCard');
         const menuCardImg = document.querySelectorAll('.menuCard img');
         const menuCardP = document.querySelectorAll('.menuCard p');
@@ -28,10 +31,11 @@ const CategoryCard = ({ name }: TCategory) => {
         })
     }
     return (
-        <Col onClick={clickHandler} lg={3} md={4} sm={4} className="menuCard">
+        <Col key={id} onClick={clickHandler} lg={3} md={4} sm={4} className="menuCard">
             {/* <img src={`${media[0]?.original_url}`} alt="" /> */}
             <p>{name}</p>
-        </Col>)
+        </Col>
+    )
 }
 
 export default CategoryCard

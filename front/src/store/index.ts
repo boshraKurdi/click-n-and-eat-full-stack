@@ -11,7 +11,7 @@ import {
 } from "redux-persist";
 import storage from "redux-persist/lib/storage";
 import categories from "./categories/categoriesSlice";
-import products from "./products/productsSlice";
+import meals from "./meals/mealsSlice";
 import cart from "./cart/CartSlice";
 import auth from "./auth/authSlice";
 import restaurants from './restaurants/restaurantsSlice';
@@ -32,13 +32,13 @@ const authPersistConfig = {
 const cartPersistConfig = {
     key: "cart",
     storage,
-    whitelist: ["items"],
+    whitelist: ["itemsCart"],
 };
 
 const rootReducer = combineReducers({
     auth: persistReducer(authPersistConfig, auth),
     categories,
-    products,
+    meals,
     restaurants,
     cart: persistReducer(cartPersistConfig, cart),
     orders,

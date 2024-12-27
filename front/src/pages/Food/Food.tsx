@@ -1,17 +1,14 @@
 import { Container } from 'react-bootstrap'
 import './Food.css'
-import { Cart, MainTitle, ProductList } from '@components/index'
-import CategoryList from '@components/Categories/CategoryList/CategoryList'
+import { Cart, MainTitle, MealsList } from '@components/index'
 const Food = () => {
 
     return (
         <div className='food'>
             <Container>
                 <MainTitle>Food</MainTitle>
-                <CategoryList />
-
                 <Cart count={0} />
-                <ProductList />
+                <MealsList />
             </Container>
         </div>
     )
