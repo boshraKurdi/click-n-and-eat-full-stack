@@ -1,14 +1,13 @@
-import { Alert, Container, Form } from 'react-bootstrap'
-import './Login.css'
-import { zodResolver } from '@hookform/resolvers/zod'
-import './Login.css'
-import { Button } from '@components/index'
+import { Alert, Container, Form } from 'react-bootstrap';
+import { zodResolver } from '@hookform/resolvers/zod';
+import './Login.css';
+import { Button } from '@components/index';
 import { z } from 'zod';
 import { useForm, SubmitHandler } from "react-hook-form";
-import { NavLink, useNavigate } from 'react-router-dom'
-import { useState } from 'react'
-import { useAppDispatch } from '@store/hook'
-import { actAuthLogin } from '@store/auth/authSlice'
+import { NavLink, useNavigate } from 'react-router-dom';
+import { useState } from 'react';
+import { useAppDispatch } from '@store/hook';
+import { actAuthLogin } from '@store/auth/authSlice';
 const schema = z.object({
     email: z.string({ required_error: 'required field', invalid_type_error: 'email is required!' }).email(),
     password: z.string({ required_error: 'required field', invalid_type_error: 'password is required!' }).min(8),

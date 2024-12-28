@@ -1,5 +1,5 @@
 import { minusItemCart, plusItemCart, removeFromCart } from '@store/cart/CartSlice'
-import './CartCard.css'
+import './CartCardCheck.css'
 import { useDispatch } from 'react-redux'
 type TCartCard = {
     id?: number,

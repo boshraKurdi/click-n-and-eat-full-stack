@@ -37,13 +37,15 @@ const cartPersistConfig = {
 
 const rootReducer = combineReducers({
     auth: persistReducer(authPersistConfig, auth),
+    // categories,
     categories,
     meals,
     restaurants,
+    // cart,
     cart: persistReducer(cartPersistConfig, cart),
     orders,
 });
-
+localStorage.removeItem('cart')
 const persistedReducer = persistReducer(rootPersistConfig, rootReducer);
 
 const store = configureStore({

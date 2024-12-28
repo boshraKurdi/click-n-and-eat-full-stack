@@ -2,7 +2,7 @@ export type TCart = {
     id: number,
     name: string,
     quantity: number,
-    price?: number,
+    price: number,
     // img:string
 };
 export type TCartProperty =

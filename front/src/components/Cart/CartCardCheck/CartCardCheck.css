@@ -1,7 +1,7 @@
 .cartItem {
     display: flex;
     align-items: center;
-    justify-content: space-around;
+    justify-content: space-between;
 }
 
 .cartItem .remove {
@@ -10,7 +10,7 @@
 }
 
 .cartItem:not(:last-of-type) {
-    border-bottom: 1px solid #fff;
+    border-bottom: 1px solid var(--main-color);
 }
 
 .cartItem img {
