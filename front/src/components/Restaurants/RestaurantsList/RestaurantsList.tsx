@@ -5,10 +5,12 @@ import { useEffect } from "react";
 import { useAppSelector } from "@store/hook";
 import RestaurantCard from "../RestaurantCard/RestaurantCard";
 import { Row } from "react-bootstrap";
+import { removeCart } from "@store/cart/CartSlice";
 const RestaurantsList = () => {
     const dispatch = useDispatch();
     const { data, error, loading } = useAppSelector(state => state.restaurants)
     useEffect(() => {
+        dispatch(removeCart())
         var promise = dispatch<any>(actGetResrtaurants())
         return () => {
             promise.abort();

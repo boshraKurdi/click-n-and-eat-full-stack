@@ -14,14 +14,15 @@ type TMeal = {
 }
 function MealCard({ img, title, text, price, id }: TMeal) {
     const dispatch = useDispatch();
-    const { itemsCart } = useAppSelector(state => state.cart);
+    // const { itemsCart } = useAppSelector(state => state.cart);
     const { data } = useAppSelector(state => state.meals);
     const dataCart = data?.meal.find(meal => meal.id === id)
-    console.log(itemsCart);
     const addToCartHandler = () => {
+        // console.log(itemsCart);
         const data = {
             id: dataCart?.id,
             name: dataCart?.name,
+            price: dataCart?.pivot.price
         }
         dispatch(addToCart(data))
 
@@ -37,9 +38,10 @@ function MealCard({ img, title, text, price, id }: TMeal) {
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>
-                        {text}                </Card.Text>
+                        {text}
+                    </Card.Text>
                     <Card.Text className='price'>
-                        {price}$
+                        ${price}
                     </Card.Text>
                     <Button onClick={addToCartHandler}>Buy</Button>
                 </Card.Body>

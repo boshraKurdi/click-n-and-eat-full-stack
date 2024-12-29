@@ -38,6 +38,9 @@ function AppRouter() {
       }, {
         path: 'restaurant/:id/categories/:mealsId',
         element: <SuspensedPage><Food /></SuspensedPage>
+      }, {
+        path: 'restaurant/:id/categories/:mealsId/checkout',
+        element: <SuspensedPage><Checkout /></SuspensedPage>
       }
       ]
     }
