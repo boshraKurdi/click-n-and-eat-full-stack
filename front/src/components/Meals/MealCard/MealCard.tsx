@@ -25,7 +25,6 @@ function MealCard({ img, title, text, price, id }: TMeal) {
             price: dataCart?.pivot.price
         }
         dispatch(addToCart(data))
-
     }
     return (
         <Col sm={12} xs={12} md={6} lg={4} xl={4} style={{ marginBottom: '20px', flex: 0 }}>

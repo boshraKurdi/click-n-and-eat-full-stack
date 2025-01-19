@@ -21,7 +21,11 @@ class OrderController extends Controller
      */
     public function store(StoreOrderRequest $request)
     {
-        //
+        $order = Order::create($request->validated());
+        if ($request->items) {
+            $order->items()->attach($request->items);
+        }
+        return response()->json(['message' => 'successfully!']);
     }
 
     /**
@@ -29,7 +33,8 @@ class OrderController extends Controller
      */
     public function show(Order $order)
     {
-        //
+        $data = $order->load(['items', 'items.meal', 'items.meal.media']);
+        return response()->json(['data' => $data]);
     }
 
     /**
