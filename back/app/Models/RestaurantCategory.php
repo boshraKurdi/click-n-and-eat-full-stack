@@ -17,7 +17,7 @@ class RestaurantCategory extends Model
             'restaurant_category_meals',
             'restaurant_category_id',
             'meal_id'
-        )->withPivot(['price']);
+        )->withPivot(['price', 'id']);
     }
     public function category()
     {
