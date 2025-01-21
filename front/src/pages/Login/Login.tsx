@@ -6,6 +6,7 @@ import { z } from 'zod';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { NavLink, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+import Cookie from 'cookie-universal';
 import { useAppDispatch } from '@store/hook';
 import { actAuthLogin } from '@store/auth/authSlice';
 const schema = z.object({
@@ -20,6 +21,7 @@ type TUser = {
     password: string
 }
 const Login = () => {
+    const cookie = Cookie()
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const data: TUser = {
@@ -44,7 +46,11 @@ const Login = () => {
             // console.log(data)
             dispatch(actAuthLogin(data))
                 .unwrap()
-                .then(() => navigate('/'))
+                .then((res) => {
+                    const token = res.data.authorisation.token;
+                    cookie.set('token' , token);
+                    navigate('/')
+                })
             setEmail('')
             setPassword('')
 

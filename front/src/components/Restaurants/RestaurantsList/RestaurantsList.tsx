@@ -17,7 +17,7 @@ const RestaurantsList = () => {
             dispatch(RestaurantsRecordsCleanUp());
         };
     }, [dispatch]);
-    const restaurantsCards = data?.data.map((cate) => <RestaurantCard id={cate.id} address={cate.address} name={cate.name} media={cate.media} />);
+    const restaurantsCards = data?.data?.map((cate) => <RestaurantCard id={cate.id} address={cate.address} name={cate.name} media={cate.media} />);
     return (
         <Row className="restList">
             {restaurantsCards}
