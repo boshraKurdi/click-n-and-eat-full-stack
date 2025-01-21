@@ -2,48 +2,50 @@ import './Checkout.css'
 import { Alert, Container, Form } from 'react-bootstrap'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { Button, CartCardCheck, MainTitle } from '@components/index'
-import { z } from 'zod';
+import { number, z } from 'zod';
 import { useForm, SubmitHandler } from "react-hook-form";
 import { useNavigate } from 'react-router-dom'
 import { useState } from 'react';
 import { useAppDispatch, useAppSelector } from '@store/hook';
-
+import { actAddUserOrders } from '@store/orders/ordersSlice';
+import { TOrder } from '@customtypes/order';
+import { removeCart } from '@store/cart/CartSlice';
 const schema = z.object({
     first: z.string({ required_error: 'required field', invalid_type_error: 'First Name is required!' }),
     last: z.string({ required_error: 'required field', invalid_type_error: 'Last Name is required!' }),
-    bank: z.string({ required_error: 'required field', invalid_type_error: 'Bank Number is required!' }),
+    type: z.string({ required_error: 'required field', invalid_type_error: 'type Name is required!' }),
+    bank: z.string(),
     address: z.string({ required_error: 'required field', invalid_type_error: 'address is required!' }),
     password: z.string({ required_error: 'required field', invalid_type_error: 'Bank password is required!' }).min(8),
-    phone: z.string({ required_error: 'required field', invalid_type_error: 'Phone Number is required!' }).min(12),
+    phone: z.string().min(10),
 });
 
 type Inputs = z.infer<typeof schema>;
-type TUser = {
-    first: string,
-    last: string,
-    bank: string,
-    address: string,
-    phone: string,
-    password: string
 
-}
 const Checkout = () => {
-    const { itemsCart } = useAppSelector(state => state.cart);
-    const itemsCartCard = itemsCart.map(item => <CartCardCheck title={item.name} count={item.quantity} price={item.price} key={item.id} id={item.id} />)
+    const { itemsCart, totalPrice } = useAppSelector(state => state.cart);
+    const auth = useAppSelector(state => state.auth);
+    console.log(auth.data?.authorisation.token)
+    const items = itemsCart.map(item => item.mealId);
+    const itemsCartCard = itemsCart.map(item => <CartCardCheck title={item.name} count={item.quantity} price={item.price} key={item.id} img={item.img} id={item.id} />)
     const [first, setFirst] = useState('');
     const [last, setLast] = useState('');
-    const [bankNum, setBankNum] = useState('');
-    const [phone, setPhone] = useState('');
+    const [type, setType] = useState('');
+    const [bankNum, setBankNum] = useState(0);
+    const [phone, setPhone] = useState(0);
     const [address, setAddress] = useState('');
     const [password, setPassword] = useState('');
-    const data: TUser = {
-        first: first,
-        last: last,
+
+    const data: TOrder = {
+        firstName: first,
+        lastName: last,
         phone: phone,
         address: address,
-        bank: bankNum,
-        password: password,
-
+        bankNumber: bankNum,
+        bankPassword: password,
+        priceTotal: totalPrice,
+        type: type,
+        items: items
 
     }
     const dispatch = useAppDispatch();
@@ -62,13 +64,17 @@ const Checkout = () => {
             await new Promise((resolve) => setTimeout(resolve, 1000))
             // throw new Error();
             // console.log(data)
-            // dispatch(actAuthRegister(data))
-            //     .unwrap()
-            //     .then(() => navigate('/order'))
+            dispatch(actAddUserOrders(data))
+                .unwrap()
+                .then(() => {
+                    dispatch(removeCart())
+                    alert('Your Order Registed!')
+                    navigate('/order')
+                })
             setFirst('')
             setLast('')
-            setPhone('')
-            setBankNum('')
+            setPhone(0)
+            setBankNum(0)
             setAddress('')
             setPassword('')
 
@@ -111,10 +117,9 @@ const Checkout = () => {
                         </div>
                         <div className="location">
                             <Form.Group className="mb-3 " controlId="formBasicEmail">
-                                <Form.Control required type="text" placeholder="Phone" {...register("phone"
+                                <Form.Control required type="number" placeholder="Phone" {...register("phone"
 
                                 )}
-                                    value={phone}
                                     onChange={(e: any) => setPhone(e.target.value)}
                                 />
                                 {/* {errors.email && <span>{errors.email.message}</span>} */}
@@ -137,22 +142,34 @@ const Checkout = () => {
 
 
                         <Form.Group className="mb-3 " controlId="formBasicEmail">
-                            <Form.Control required type="text" placeholder="Bank Number" {...register("bank"
+                            <Form.Control required type="number" placeholder="Bank Number" {...register("bank"
 
                             )}
-                                value={bankNum}
-                                onChange={(e: any) => setBankNum(e.target.value)}
+                                onChange={(e: any) => {
+                                    setBankNum(e.target.value)
+                                }
+                                }
                             />
                             {/* {errors.email && <span>{errors.email.message}</span>} */}
                             {!errors.bank ? <Form.Text className="text-muted">
                             </Form.Text> : <Alert className='dangerAlert' key='danger' variant='danger'>{errors.bank.message}</Alert>}
                         </Form.Group>
 
+                        <Form.Group className="mb-3 " controlId="formBasicEmail">
+                            <Form.Control required type="text" placeholder="payment type" {...register("type"
+
+                            )}
+                                onChange={(e: any) => setType(e.target.value)}
+                            />
+                            {/* {errors.email && <span>{errors.email.message}</span>} */}
+                            {!errors.type ? <Form.Text className="text-muted">
+                            </Form.Text> : <Alert className='dangerAlert' key='danger' variant='danger'>{errors.type.message}</Alert>}
+                        </Form.Group>
+
                         <Form.Group className="mb-3" controlId="formBasicPassword">
                             <Form.Control required type="password" placeholder="Password" {...register('password'
 
                             )}
-                                value={password}
                                 onChange={(e: any) => setPassword(e.target.value)} />
                         </Form.Group>
                         {errors.password && <Alert className='dangerAlert' key='danger' variant='danger'>{errors.password.message}</Alert>}

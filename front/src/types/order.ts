@@ -1,11 +1,11 @@
 export type TOrder = {
-    id: number;
-    title: string;
-    price: number;
-    img: string;
-    max?: number;
-    cat_prefix?: string;
-    quantity?: number;
-    isLiked?: boolean;
-    isAuthenticated?: boolean;
-};
+    firstName: string,
+    lastName: string,
+    bankNumber: number,
+    address: string,
+    phone: number,
+    bankPassword: string,
+    priceTotal: number,
+    type: string,
+    items: number[]
+}

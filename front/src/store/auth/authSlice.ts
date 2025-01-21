@@ -3,14 +3,15 @@ import actAuthRegister from "./act/actAuthRegister";
 import actAuthLogin from "./act/actAuthLogin";
 import { isString } from "@customtypes/guard";
 import { TLoading } from "@customtypes/loading";
+import { TAuth } from "@customtypes/auth";
 interface IAuthState {
-  data: object
+  data: TAuth | null
   loading: TLoading;
   error: string | null;
 }
 
 const initialState: IAuthState = {
-  data: {},
+  data: null,
   loading: "idle",
   error: null,
 };
@@ -24,7 +25,7 @@ const authSlice = createSlice({
       state.error = null;
     },
     authLogout: (state) => {
-      state.data = {};
+      state.data = null;
     },
   },
   extraReducers: (builder) => {
@@ -33,8 +34,9 @@ const authSlice = createSlice({
       state.loading = "pending";
       state.error = null;
     });
-    builder.addCase(actAuthRegister.fulfilled, (state) => {
+    builder.addCase(actAuthRegister.fulfilled, (state, action) => {
       state.loading = "succeeded";
+      state.data = action.payload;
     });
     builder.addCase(actAuthRegister.rejected, (state, action) => {
       state.loading = "failed";

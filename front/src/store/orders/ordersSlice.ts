@@ -3,6 +3,7 @@ import actGetUserOrders from "./act/actGetUserOrders";
 import { TLoading } from "@customtypes/loading";
 import { TOrder } from "@customtypes/order";
 import { isString } from "@customtypes/guard";
+import actAddUserOrders from "./act/actAddUserOrder";
 
 interface IOrdersState {
   ordersList: TOrder[];
@@ -53,9 +54,24 @@ const ordersSlice = createSlice({
         state.error = action.payload;
       }
     });
+
+
+    builder.addCase(actAddUserOrders.pending, (state) => {
+      state.loading = "pending";
+    });
+    builder.addCase(actAddUserOrders.fulfilled, (state, action) => {
+      state.loading = "succeeded";
+      // state.ordersList = action.payload;
+    });
+    builder.addCase(actAddUserOrders.rejected, (state, action) => {
+      state.loading = "failed";
+      if (isString(action.payload)) {
+        state.error = action.payload;
+      }
+    });
   },
 });
 
-export { actGetUserOrders };
+export { actGetUserOrders, actAddUserOrders };
 export const { resetOrderStatus } = ordersSlice.actions;
 export default ordersSlice.reducer;

@@ -14,8 +14,9 @@ const CartList = () => {
     const navigate = useNavigate();
     const dispatch = useAppDispatch();
     const { itemsCart, totalQuantity, totalPrice } = useAppSelector(state => state.cart);
+    console.log(itemsCart)
     const itemsCartCards = itemsCart?.map(item => {
-        return <CartCard id={item.id} price={item.price} img={burger} title={item.name} count={item.quantity} key={item.id} />
+        return <CartCard id={item.id} price={item.price} img={item.img} title={item.name} count={item.quantity} key={item.id} />
     })
     useEffect(() => {
         dispatch(getTotalQuantity());

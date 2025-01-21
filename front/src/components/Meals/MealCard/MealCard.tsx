@@ -6,23 +6,24 @@ import { useDispatch } from 'react-redux';
 import { addToCart } from '@store/cart/CartSlice';
 import { useAppSelector } from '@store/hook';
 type TMeal = {
-    id?: number,
+    id: number,
     text: string,
     title: string,
-    img?: string,
-    price?: React.ReactNode
+    media: { original_url: string }[],
+    price: React.ReactNode
 }
-function MealCard({ img, title, text, price, id }: TMeal) {
+function MealCard({ media, title, text, price, id }: TMeal) {
     const dispatch = useDispatch();
-    // const { itemsCart } = useAppSelector(state => state.cart);
     const { data } = useAppSelector(state => state.meals);
-    const dataCart = data?.meal.find(meal => meal.id === id)
+    const dataCart = data?.meal.find(meal => meal.id === id);
+    console.log(data)
     const addToCartHandler = () => {
-        // console.log(itemsCart);
         const data = {
+            mealId: dataCart?.pivot.meal_id,
             id: dataCart?.id,
             name: dataCart?.name,
-            price: dataCart?.pivot.price
+            price: dataCart?.pivot.price,
+            img: dataCart?.media[0].original_url
         }
         dispatch(addToCart(data))
     }
@@ -33,7 +34,7 @@ function MealCard({ img, title, text, price, id }: TMeal) {
                     width: '18rem',
                     height: '700px'
                 }
-            }> <Card.Img variant="top" src={img} />
+            }> <Card.Img variant="top" src={media[0]?.original_url} />
                 <Card.Body>
                     <Card.Title>{title}</Card.Title>
                     <Card.Text>
