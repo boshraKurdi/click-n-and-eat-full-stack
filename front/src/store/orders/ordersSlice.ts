@@ -6,7 +6,7 @@ import { isString } from "@customtypes/guard";
 import actAddUserOrders from "./act/actAddUserOrder";
 
 interface IOrdersState {
-  ordersList: TOrder[];
+  ordersList: [];
   loading: TLoading;
   error: string | null;
 }
@@ -46,7 +46,7 @@ const ordersSlice = createSlice({
     });
     builder.addCase(actGetUserOrders.fulfilled, (state, action) => {
       state.loading = "succeeded";
-      // state.ordersList = action.payload;
+      state.ordersList = action.payload;
     });
     builder.addCase(actGetUserOrders.rejected, (state, action) => {
       state.loading = "failed";

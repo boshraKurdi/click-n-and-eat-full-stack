@@ -69,7 +69,6 @@ const Checkout = () => {
                 .then(() => {
                     dispatch(removeCart())
                     alert('Your Order Registed!')
-                    navigate('/order')
                 })
             setFirst('')
             setLast('')
@@ -186,7 +185,7 @@ const Checkout = () => {
                     <div className="cartItems">
                         <h1>Cart List</h1>
                         <div className="list">
-                            {itemsCartCard}
+                            {itemsCart.length ? itemsCartCard : "Your Cart is empty!"}
                         </div>
                     </div>
                 </div>

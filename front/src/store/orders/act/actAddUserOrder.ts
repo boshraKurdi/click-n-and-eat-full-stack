@@ -6,7 +6,7 @@ import Cookie from 'cookie-universal';
 import { TOrder } from "@customtypes/order";
 
 type TResponse = {};
- const cookie = Cookie()
+const cookie = Cookie()
 
 const actAddUserOrders = createAsyncThunk(
     "orders/actAddUserOrders",

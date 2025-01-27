@@ -47,8 +47,8 @@ const Login = () => {
             dispatch(actAuthLogin(data))
                 .unwrap()
                 .then((res) => {
-                    const token = res.data.authorisation.token;
-                    cookie.set('token' , token);
+                    const token = res.authorisation.token;
+                    cookie.set('token', token);
                     navigate('/')
                 })
             setEmail('')
@@ -67,7 +67,9 @@ const Login = () => {
                     <Form.Group className="mb-3 " controlId="formBasicEmail">
                         <Form.Control type="email" placeholder="Enter email" {...register("email"
 
-                        )} />
+                        )}
+                            onChange={(e) => setEmail(e.target.value)}
+                        />
                         {/* {errors.email && <span>{errors.email.message}</span>} */}
                         {!errors.email ? <Form.Text className="text-muted">
                             We'll never share your email with anyone else.
@@ -77,7 +79,10 @@ const Login = () => {
                     <Form.Group className="mb-3" controlId="formBasicPassword">
                         <Form.Control type="password" placeholder="Password" {...register('password'
 
-                        )} />
+                        )}
+                            onChange={(e) => setPassword(e.target.value)}
+
+                        />
                     </Form.Group>
                     {errors.password && <Alert className='dangerAlert' key='danger' variant='danger'>{errors.password.message}</Alert>}
 

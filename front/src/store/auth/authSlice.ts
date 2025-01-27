@@ -4,6 +4,7 @@ import actAuthLogin from "./act/actAuthLogin";
 import { isString } from "@customtypes/guard";
 import { TLoading } from "@customtypes/loading";
 import { TAuth } from "@customtypes/auth";
+import actLogout from "./act/actLogout";
 interface IAuthState {
   data: TAuth | null
   loading: TLoading;
@@ -44,6 +45,21 @@ const authSlice = createSlice({
         state.error = action.payload;
       }
     });
+    //logout
+    builder.addCase(actLogout.pending, (state) => {
+      state.loading = "pending";
+      state.error = null;
+    });
+    builder.addCase(actLogout.fulfilled, (state, action) => {
+      state.loading = "succeeded";
+      state.data = action.payload;
+    });
+    builder.addCase(actLogout.rejected, (state, action) => {
+      state.loading = "failed";
+      if (isString(action.payload)) {
+        state.error = action.payload;
+      }
+    });
 
     // login
     builder.addCase(actAuthLogin.pending, (state) => {
@@ -63,6 +79,6 @@ const authSlice = createSlice({
   },
 });
 
-export { actAuthRegister, actAuthLogin };
+export { actAuthRegister, actAuthLogin, actLogout };
 export const { resetUI, authLogout } = authSlice.actions;
 export default authSlice.reducer;
